@@ -6,7 +6,18 @@
 //     item.style.fontWeight = 'bold';
 // })
 
-const item = document.getElementsByClassName('last-item')
+// const item = document.getElementsByClassName('last-item')
 
-item[0].style.color = "red";
-item[0].classList.add("list-group-item");
+// item[0].style.color = "red";
+// item[0].classList.add("list-group-item");
+
+const items = document.querySelectorAll('.list-group-item');
+
+for (let i = 0; i < items.length; i++) {
+    if (i == 1) {
+        items[i].style.color = "green";
+    }
+    else if (i % 2 == 0) {
+        items[i].style.backgroundColor = "green";
+    }
+}
