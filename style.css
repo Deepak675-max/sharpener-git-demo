@@ -49,7 +49,7 @@ header {
     border: 1px solid #ccc;
 }
 
-.btn {
+#submit {
     display: block;
     width: 100%;
     padding: 10px 15px;

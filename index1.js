@@ -56,6 +56,8 @@ const userList = document.querySelector('#users');
 // Listen for form submit
 myForm.addEventListener('submit', onSubmit);
 
+userList.addEventListener('click', removeItem);
+
 function onSubmit(e) {
     e.preventDefault();
 
@@ -70,18 +72,29 @@ function onSubmit(e) {
         // Create new list item with user
         const li = document.createElement('li');
 
+
         // Add text node with input values
         li.appendChild(document.createTextNode(`${nameInput.value}: ${emailInput.value}`));
+
+        var deleteBtn = document.createElement('button');
+
+        // Add classes to del button
+        deleteBtn.className = 'btn btn-danger btn-sm float-end delete';
+
+        // Append text node
+        deleteBtn.appendChild(document.createTextNode('delete'));
+
+        // Append button to li
+        li.appendChild(deleteBtn);
+
         const userData = {
             name: nameInput.value,
             email: emailInput.value
         }
+
         const data = JSON.stringify(userData);
 
         localStorage.setItem(emailInput.value, data);
-
-        // Add HTML
-        // li.innerHTML = `<strong>${nameInput.value}</strong>e: ${emailInput.value}`;
 
         // Append to ul
         userList.appendChild(li);
@@ -89,5 +102,17 @@ function onSubmit(e) {
         // Clear fields
         nameInput.value = '';
         emailInput.value = '';
+    }
+}
+
+function removeItem(e) {
+    if (e.target.classList.contains('delete')) {
+        if (confirm('Are You Sure?')) {
+            var li = e.target.parentElement;
+            const userEmail = li.firstChild.textContent.split(' ')[1];
+            console.log(userEmail);
+            localStorage.removeItem(userEmail);
+            userList.removeChild(li);
+        }
     }
 }
