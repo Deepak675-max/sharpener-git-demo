@@ -14,7 +14,7 @@ ul {
 }
 
 ul li {
-    padding: 5px;
+    padding: 2px;
     background: #f4f4f4;
     margin: 5px 0;
 }
@@ -27,7 +27,7 @@ header {
 
 .container {
     margin: auto;
-    width: 500px;
+    width: 600px;
     overflow: auto;
     padding: 3rem 2rem;
 }

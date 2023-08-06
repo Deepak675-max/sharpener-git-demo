@@ -57,6 +57,8 @@ const userList = document.querySelector('#users');
 myForm.addEventListener('submit', onSubmit);
 
 userList.addEventListener('click', removeItem);
+userList.addEventListener('click', editItem);
+
 
 function onSubmit(e) {
     e.preventDefault();
@@ -74,12 +76,23 @@ function onSubmit(e) {
 
 
         // Add text node with input values
-        li.appendChild(document.createTextNode(`${nameInput.value}: ${emailInput.value}`));
+        li.appendChild(document.createTextNode(`${nameInput.value}:${emailInput.value}`));
+
+        var editBtn = document.createElement('button');
+
+        // Add classes to del button
+        editBtn.className = 'btn btn-danger btn-sm float-end edit';
+
+        // Append text node
+        editBtn.appendChild(document.createTextNode('edit'));
+
+        // Append button to li
+        li.appendChild(editBtn);
 
         var deleteBtn = document.createElement('button');
 
         // Add classes to del button
-        deleteBtn.className = 'btn btn-danger btn-sm float-end delete';
+        deleteBtn.className = 'mx-2 btn btn-danger btn-sm float-end delete';
 
         // Append text node
         deleteBtn.appendChild(document.createTextNode('delete'));
@@ -109,10 +122,23 @@ function removeItem(e) {
     if (e.target.classList.contains('delete')) {
         if (confirm('Are You Sure?')) {
             var li = e.target.parentElement;
-            const userEmail = li.firstChild.textContent.split(' ')[1];
-            console.log(userEmail);
-            localStorage.removeItem(userEmail);
+            const data = li.firstChild.textContent.split(':');
+            localStorage.removeItem(data[1]);
             userList.removeChild(li);
         }
+    }
+}
+
+
+function editItem(e) {
+    if (e.target.classList.contains('edit')) {
+        var li = e.target.parentElement;
+        const data = li.firstChild.textContent.split(':');
+        const name = document.querySelector('#name');
+        name.value = data[0];
+        const email = document.querySelector('#email');
+        email.value = data[1];
+        localStorage.removeItem(data[1]);
+        userList.removeChild(li);
     }
 }
