@@ -78,7 +78,7 @@ function onSubmit(e) {
         }
         const data = JSON.stringify(userData);
 
-        localStorage.setItem('user', data);
+        localStorage.setItem(emailInput.value, data);
 
         // Add HTML
         // li.innerHTML = `<strong>${nameInput.value}</strong>e: ${emailInput.value}`;
