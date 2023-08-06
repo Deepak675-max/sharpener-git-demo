@@ -1,23 +1,11 @@
-// const items = document.querySelectorAll('.list-group-item');
-// items.forEach(item => {
-//     if (item.innerHTML == items[2].innerHTML) {
-//         item.style.backgroundColor = "green";
-//     }
-//     item.style.fontWeight = 'bold';
-// })
-
-// const item = document.getElementsByClassName('last-item')
-
-// item[0].style.color = "red";
-// item[0].classList.add("list-group-item");
-
-const items = document.querySelectorAll('.list-group-item');
-
-for (let i = 0; i < items.length; i++) {
-    if (i == 1) {
-        items[i].style.color = "green";
-    }
-    else if (i % 2 == 0) {
-        items[i].style.backgroundColor = "green";
-    }
-}
+const items = document.querySelector('#items');
+console.log(items.parentElement);
+const headerTitle = document.querySelector('#header-title');
+const newElement = document.createElement('h1');
+newElement.textContent = "HEllo";
+headerTitle.parentElement.insertBefore(newElement, headerTitle);
+const item1 = document.querySelector('.list-group-item');
+const newItem = document.createElement('li');
+newItem.setAttribute('class', 'list-group-item');
+newItem.textContent = 'HEllo';
+items.insertBefore(newItem, item1);
